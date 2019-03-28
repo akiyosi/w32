@@ -1,3 +1,5 @@
+// +build windows
+
 package w32
 
 // combase!_SECTION_IMAGE_INFORMATION
