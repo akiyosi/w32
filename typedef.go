@@ -231,6 +231,15 @@ type RECT struct {
 	Left, Top, Right, Bottom int32
 }
 
+// https://docs.microsoft.com/en-us/windows/desktop/api/winuser/ns-winuser-tagminmaxinfo
+type MINMAXINFO struct {
+	PtReserved      POINT
+	PtMaxSize       POINT
+	PtMaxPosition   POINT
+	PtMinTrackSize  POINT
+	PtMaxTrackSize  POINT
+}
+
 // http://msdn.microsoft.com/en-us/library/windows/desktop/ms633577.aspx
 type WNDCLASSEX struct {
 	Size       uint32
