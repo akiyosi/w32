@@ -246,6 +246,21 @@ const (
 	GWLP_USERDATA   = -21
 )
 
+// https://docs.microsoft.com/en-us/windows/desktop/api/winuser/nf-winuser-setclasslonga
+// GetClassLong and SetClassLong constants
+const (
+	GCL_CBCLSEXTRA    = -20
+	GCL_CBWNDEXTRA    = -18
+	GCL_HBRBACKGROUND = -10
+	GCL_HCURSOR       = -12
+	GCL_HICON         = -14
+	GCL_HICONSM       = -34
+	GCL_HMODULE       = -16
+	GCL_MENUNAME      = -8
+	GCL_STYLE         = -26
+	GCL_WNDPROC       = -24
+)
+
 // Window style constants
 const (
 	WS_OVERLAPPED       = 0X00000000

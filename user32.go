@@ -41,6 +41,8 @@ var (
 	procMoveWindow                    = moduser32.NewProc("MoveWindow")
 	procScreenToClient                = moduser32.NewProc("ScreenToClient")
 	procCallWindowProc                = moduser32.NewProc("CallWindowProcW")
+	procSetClassLong                  = moduser32.NewProc("SetClassLongW")
+	procGetClassLong                  = moduser32.NewProc("GetClassLongW")
 	procSetWindowLong                 = moduser32.NewProc("SetWindowLongW")
 	procSetWindowLongPtr              = moduser32.NewProc("SetWindowLongW")
 	procGetWindowLong                 = moduser32.NewProc("GetWindowLongW")
@@ -423,6 +425,23 @@ func SetWindowLongPtr(hwnd HWND, index int, value uintptr) uintptr {
 		uintptr(hwnd),
 		uintptr(index),
 		value)
+
+	return ret
+}
+
+func SetClassLong(hwnd HWND, index int, value uintptr) uintptr {
+	ret, _, _ := procSetClassLong.Call(
+		uintptr(hwnd),
+		uintptr(index),
+		uintptr(value))
+
+	return ret
+}
+
+func GetClassLong(hwnd HWND, index int) uintptr {
+	ret, _, _ := procGetClassLong.Call(
+		uintptr(hwnd),
+		uintptr(index))
 
 	return ret
 }
