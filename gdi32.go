@@ -30,6 +30,7 @@ var (
 	procCreateDIBSection          = modgdi32.NewProc("CreateDIBSection")
 	procCreateEnhMetaFile         = modgdi32.NewProc("CreateEnhMetaFileW")
 	procCreateIC                  = modgdi32.NewProc("CreateICW")
+	procCreateRoundRectRgn        = modgdi32.NewProc("CreateRoundRectRgn")
 	procDeleteDC                  = modgdi32.NewProc("DeleteDC")
 	procDeleteEnhMetaFile         = modgdi32.NewProc("DeleteEnhMetaFile")
 	procEllipse                   = modgdi32.NewProc("Ellipse")
@@ -216,6 +217,19 @@ func CreateIC(lpszDriver, lpszDevice, lpszOutput *uint16, lpdvmInit *DEVMODE) HD
 		uintptr(unsafe.Pointer(lpdvmInit)))
 
 	return HDC(ret)
+}
+
+func CreateRoundRectRgn(x1, y1, x2, y2, w, h int) HRGN {
+	ret, _, _ := procCreateRoundRectRgn.Call(
+		uintptr(x1),
+		uintptr(y1),
+		uintptr(x2),
+		uintptr(y2),
+		uintptr(w),
+		uintptr(h),
+	)
+
+	return HRGN(ret)
 }
 
 func DeleteDC(hdc HDC) bool {

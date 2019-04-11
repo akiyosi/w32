@@ -82,6 +82,7 @@ var (
 	procPeekMessage                   = moduser32.NewProc("PeekMessageW")
 	procTranslateAccelerator          = moduser32.NewProc("TranslateAcceleratorW")
 	procSetWindowPos                  = moduser32.NewProc("SetWindowPos")
+	procSetWindowRgn                  = moduser32.NewProc("SetWindowRgn")
 	procFillRect                      = moduser32.NewProc("FillRect")
 	procDrawText                      = moduser32.NewProc("DrawTextW")
 	procAddClipboardFormatListener    = moduser32.NewProc("AddClipboardFormatListener")
@@ -763,6 +764,16 @@ func SetWindowPos(hwnd, hWndInsertAfter HWND, x, y, cx, cy int, uFlags uint) boo
 		uintptr(cx),
 		uintptr(cy),
 		uintptr(uFlags))
+
+	return ret != 0
+}
+
+func SetWindowRgn(hwnd HWND, hrgn HRGN, brdrw bool) bool {
+	ret, _, _ := procSetWindowRgn.Call(
+		uintptr(hwnd),
+		uintptr(hrgn),
+		uintptr(BoolToBOOL(brdrw)),
+	)
 
 	return ret != 0
 }
