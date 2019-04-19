@@ -896,6 +896,21 @@ type KBDLLHOOKSTRUCT struct {
 	DwExtraInfo ULONG_PTR
 }
 
+type WINDOWPOS struct {
+	Hwnd               HWND
+	HwndInsertAfter    HWND
+	x                  int
+	y                  int
+	cx                 int
+	cy                 int
+	flags              uint32
+}
+
+type NCCALCSIZE_PARAMS struct {
+	Rgrc     [3]RECT
+	Lppos    *WINDOWPOS
+}
+
 type HOOKPROC func(int, WPARAM, LPARAM) LRESULT
 
 // https://msdn.microsoft.com/en-us/library/windows/desktop/ms633498(v=vs.85).aspx
